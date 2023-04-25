@@ -22,7 +22,7 @@ import cookies from 'vue-cookies'
                 this.error_message = undefined;
                 axios.request(
                     {
-                        url: `https://foodie.bymoen.codes/api/client-logi`,
+                        url: `https://foodie.bymoen.codes/api/client-login`,
                         method: `POST`,
                         headers: {
                             'x-api-key': `9uOwrHiuKE6VUs8CIbJo`
