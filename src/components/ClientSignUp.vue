@@ -43,6 +43,7 @@ import cookies from 'vue-cookies'
                 ).then((res) => {
                     cookies.set(`client_id`, JSON.stringify(res.data.client_id));
                     cookies.set(`token`, res.data.token);
+                    //send to client portal
                 }).catch(() => {
                     this.error_message = `Sign up failed. Try again.`;
                 });

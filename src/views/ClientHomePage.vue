@@ -1,15 +1,17 @@
 <template>
     <div>
         <client-sign-up></client-sign-up>
+        <client-log-in></client-log-in>
     </div>
 </template>
 
 <script>
 import ClientSignUp from '@/components/ClientSignUp.vue'
-
+import ClientLogIn from '@/components/ClientLogIn.vue'
     export default {
         components: {
             ClientSignUp,
+            ClientLogIn
         },
         
     }
