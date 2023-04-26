@@ -1,23 +1,23 @@
 <template>
     <div class="profile_container">
-        <h4>{{error_message}}</h4>
+        <h4>{{message}}</h4>
         <div>
-            <img :src="user_image_url">
+            <img :src="image_url">
             <input placeholder="Change Image" type="text" ref="image_url">
             <button field="image_url" @click="handle_edit">Save</button>
         </div>
         <div>
-            <p>First Name: {{user_first_name}}</p>
+            <p>First Name: {{first_name}}</p>
             <input placeholder="Change First Name" type="text" ref="first_name">
             <button field="first_name" @click="handle_edit">Save</button>
         </div>
         <div>   
-            <p> Last Name: {{user_last_name}}</p>
+            <p> Last Name: {{last_name}}</p>
             <input placeholder="Change Last Name" type="text" ref="last_name">
             <button field="last_name" @click="handle_edit">Save</button>
         </div>
         <div>
-            <p>Email: {{user_email}}</p>
+            <p>Email: {{email}}</p>
             <input placeholder="Change Email" type="text" ref="email">
             <button field="email" @click="handle_edit">Save</button>
         </div>
@@ -38,7 +38,6 @@ import cookies from 'vue-cookies'
             handle_edit: function(event) {
                 let data_key = event.target.getAttribute(`field`);
                 let input_value = this.$refs[data_key].value;
-
                 if(input_value != ``) {
                     let data = {};
                     data[data_key] = input_value;
@@ -52,23 +51,26 @@ import cookies from 'vue-cookies'
                             },
                             data: data
                         }
-                    ).then((res) => {
-                        res;
+                    ).then(() => {
+                        this.message = `Updated your info succesfully.`
+                        this[data_key] = input_value;
                     }).catch(() => {
-                        this.error_message = `Updating your info failed. Try again.`
+                        this.message = `Updating your info failed. Try again.`
                     });
                 } else {
-                    this.error_message = `Please fill out the field before saving`
+                    this.message = `Please fill out the field before saving`
                 }
+
+                this.$refs[data_key].value = ``;
             }
         },
         data() {
             return {
-                user_image_url: undefined,
-                user_email: undefined,
-                user_first_name: undefined,
-                user_last_name: undefined,
-                error_message: undefined,
+                image_url: undefined,
+                email: undefined,
+                first_name: undefined,
+                last_name: undefined,
+                message: undefined,
             }
         },
         mounted () {
@@ -83,12 +85,12 @@ import cookies from 'vue-cookies'
                     }
                 }
             ).then((res) => {
-                this.user_image_url = res.data[0].image_url;
-                this.user_email = res.data[0].email;
-                this.user_first_name = res.data[0].first_name;
-                this.user_last_name = res.data[0].last_name;
+                this.image_url = res.data[0].image_url;
+                this.email = res.data[0].email;
+                this.first_name = res.data[0].first_name;
+                this.last_name = res.data[0].last_name;
             }).catch(() => {
-                this.error_message = `An error occured. Try again.`
+                this.message = `An error occured. Try again.`
             });
         }
     }
