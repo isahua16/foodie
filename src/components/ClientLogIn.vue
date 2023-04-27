@@ -1,8 +1,8 @@
 <template>
     <section>
         <h2>Client Log In</h2>
-        <input type="text" name="client_log_in" ref="input_email">
-        <input type="password" name="client_log_in" ref="input_password">
+        <input placeholder="Email" type="text" name="client_log_in" ref="input_email">
+        <input placeholder="Password" type="password" name="client_log_in" ref="input_password">
         <button @click="handle_client_login">Log In</button>
         <h4>{{error_message}}</h4>
     </section>

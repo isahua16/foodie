@@ -1,7 +1,8 @@
 <template>
     <div>
-        <client-sign-up></client-sign-up>
-        <client-log-in></client-log-in>
+        <button @click="handle_customer_view">{{button_message}}</button>
+        <client-sign-up v-if="display_signup === true"></client-sign-up>
+        <client-log-in v-else></client-log-in>
     </div>
 </template>
 
@@ -9,6 +10,22 @@
 import ClientSignUp from '@/components/ClientSignUp.vue'
 import ClientLogIn from '@/components/ClientLogIn.vue'
     export default {
+        methods: {
+            handle_customer_view: function() {
+               this.display_signup = !this.display_signup;
+                if(this.display_signup !== true) {
+                    this.button_message = `I am a returning customer`;
+                } else {
+                    this.button_message = `I am a new customer`;
+                }
+            }
+        },
+        data() {
+            return {
+                display_signup: true,
+                button_message: `I am a new customer`
+            }
+        },
         components: {
             ClientSignUp,
             ClientLogIn
