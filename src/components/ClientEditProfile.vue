@@ -1,6 +1,7 @@
 <template>
     <div class="profile_container">
         <h4>{{message}}</h4>
+        <h2>My profile</h2>
         <div>
             <img :src="image_url">
             <input placeholder="Change Image" type="text" ref="image_url">
@@ -52,8 +53,8 @@ import cookies from 'vue-cookies'
                             data: data
                         }
                     ).then(() => {
-                        this.message = `Updated your info succesfully.`
                         this[data_key] = input_value;
+                        this.message = undefined;
                     }).catch(() => {
                         this.message = `Updating your info failed. Try again.`
                     });

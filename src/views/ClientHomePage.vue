@@ -13,7 +13,7 @@ import ClientLogIn from '@/components/ClientLogIn.vue'
         methods: {
             handle_customer_view: function() {
                this.display_signup = !this.display_signup;
-                if(this.display_signup !== true) {
+                if(this.display_signup === true) {
                     this.button_message = `I am a returning customer`;
                 } else {
                     this.button_message = `I am a new customer`;
@@ -23,7 +23,7 @@ import ClientLogIn from '@/components/ClientLogIn.vue'
         data() {
             return {
                 display_signup: true,
-                button_message: `I am a new customer`
+                button_message: `I am a returning customer`
             }
         },
         components: {
