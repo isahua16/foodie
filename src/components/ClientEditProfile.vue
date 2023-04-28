@@ -61,7 +61,6 @@ import cookies from 'vue-cookies'
                 } else {
                     this.message = `Please fill out the field before saving`
                 }
-
                 this.$refs[data_key].value = ``;
             }
         },
@@ -102,7 +101,6 @@ import cookies from 'vue-cookies'
         display: grid;
         place-items: center;
     }
-    
     
     div {
         display: grid;

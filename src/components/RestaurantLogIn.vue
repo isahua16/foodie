@@ -36,7 +36,7 @@ import cookies from 'vue-cookies'
                     console.log(res);
                     cookies.set(`restaurant_id`, JSON.stringify(res.data.restaurantId));
                     cookies.set(`token`, res.data.token);
-                    // this.$router.push(`/restaurant-profile`);
+                    this.$router.push(`/restaurant-profile`);
                 }).catch((err) => {
                     console.log(err);
                     this.error_message = `Log in failed. Try again`;
