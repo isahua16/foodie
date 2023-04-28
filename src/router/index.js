@@ -43,7 +43,7 @@ const routes = [
   {
     path: `/restaurant-menu`,
     component: RestaurantMenuPage
-  }
+  },
 ]
 
 const router = new VueRouter({

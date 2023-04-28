@@ -1,9 +1,9 @@
 <template>
     <div>
         <h3>Delete Account</h3>
+        <h4>{{message}}</h4>
         <input placeholder="Password" type="password" ref="input_password">
         <button @click="handle_client_delete">Delete Account</button>
-        <h4>{{message}}</h4>
     </div>
 </template>
 
@@ -40,7 +40,7 @@ import cookies from 'vue-cookies'
                         this.$router.push(`/`);
                     }). catch((err) => {
                         err;
-                        this.message = `An error occured, plus try again`
+                        this.message = `An error occured. Try again`
                     });
                 }
             }

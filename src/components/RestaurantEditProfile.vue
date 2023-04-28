@@ -42,12 +42,18 @@
             </select>
             <button field="city" @click="handle_edit">Save</button>
         </div>
+        <div>
+            <input placeholder="Change Password" type="text" ref="password">
+            <button field="password" @click="handle_edit">Save</button>
+        </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import cookies from 'vue-cookies'
+
+
     export default {
         methods: {
             handle_edit: function(event) {
