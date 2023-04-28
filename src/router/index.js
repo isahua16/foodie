@@ -5,6 +5,7 @@ import ClientProfilePage from '@/views/ClientProfilePage.vue'
 import ClientOrdersPage from '@/views/ClientOrdersPage.vue'
 import ClientCheckoutPage from '@/views/ClientCheckoutPage.vue'
 import BrowseRestaurantsPage from '@/views/BrowseRestaurantsPage.vue'
+import RestaurantHomePage from '@/views/RestaurantHomePage.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,10 @@ const routes = [
   {
     path: `/browse`,
     component: BrowseRestaurantsPage
+  },
+  {
+    path: `/restaurant`,
+    component: RestaurantHomePage
   }
 ]
 
