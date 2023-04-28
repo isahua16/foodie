@@ -7,6 +7,7 @@ import ClientCheckoutPage from '@/views/ClientCheckoutPage.vue'
 import BrowseRestaurantsPage from '@/views/BrowseRestaurantsPage.vue'
 import RestaurantHomePage from '@/views/RestaurantHomePage.vue'
 import RestaurantProfilePage from '@/views/RestaurantProfilePage.vue'
+import RestaurantMenuPage from '@/views/RestaurantMenuPage.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,10 @@ const routes = [
   {
     path: `/restaurant-profile`,
     component: RestaurantProfilePage
+  },
+  {
+    path: `/restaurant-menu`,
+    component: RestaurantMenuPage
   }
 ]
 

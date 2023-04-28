@@ -1,17 +1,15 @@
 <template>
     <div>
         <restaurant-header></restaurant-header>
-        <restaurant-edit-profile></restaurant-edit-profile>
+        <h2>MENU</h2>
     </div>
 </template>
 
 <script>
 import RestaurantHeader from '@/components/RestaurantHeader.vue'
-import RestaurantEditProfile from '@/components/RestaurantEditProfile.vue'
     export default {
         components: {
-            RestaurantEditProfile,
-            RestaurantHeader
+            RestaurantHeader,
         }
     }
 </script>

@@ -1,6 +1,7 @@
 <template>
     <div>
         <client-header v-if="cookie != null"></client-header>
+        <restaurant-header v-else></restaurant-header>
         <h2>BROWSE RESTAURANTS</h2>
     </div>
 </template>
@@ -8,6 +9,7 @@
 <script>
 import cookies from 'vue-cookies'
 import ClientHeader from '@/components/ClientHeader.vue'
+import RestaurantHeader from '@/components/RestaurantHeader.vue'
     export default {
         data() {
             return {
@@ -18,7 +20,8 @@ import ClientHeader from '@/components/ClientHeader.vue'
                 this.cookie = cookies.get(`client_id`);
         },
         components: {
-            ClientHeader
+            ClientHeader,
+            RestaurantHeader
         }
     }
 </script>
