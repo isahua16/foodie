@@ -3,6 +3,7 @@
         <button @click="handle_customer_view">{{button_message}}</button>
         <client-sign-up v-if="display_signup === true"></client-sign-up>
         <client-log-in v-else></client-log-in>
+        <button @click="$router.push(`/restaurant`)">I am a restaurant</button>
     </div>
 </template>
 

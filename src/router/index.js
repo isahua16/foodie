@@ -7,7 +7,8 @@ import ClientCheckoutPage from '@/views/ClientCheckoutPage.vue'
 import BrowseRestaurantsPage from '@/views/BrowseRestaurantsPage.vue'
 import RestaurantHomePage from '@/views/RestaurantHomePage.vue'
 import RestaurantProfilePage from '@/views/RestaurantProfilePage.vue'
-import RestaurantMenuPage from '@/views/RestaurantMenuPage.vue'
+import RestaurantEditMenuPage from '@/views/RestaurantEditMenuPage.vue'
+import RestaurantViewMenuPage from '@/views/RestaurantViewMenuPage.vue'
 
 Vue.use(VueRouter)
 
@@ -42,8 +43,12 @@ const routes = [
   },
   {
     path: `/restaurant-menu`,
-    component: RestaurantMenuPage
+    component: RestaurantEditMenuPage
   },
+  {
+    path: `/menu/:id`,
+    component: RestaurantViewMenuPage
+  }
 ]
 
 const router = new VueRouter({
