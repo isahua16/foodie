@@ -72,7 +72,4 @@ import cookies from 'vue-cookies'
         place-items: center;
     }
 
-    select {
-        width:50%;
-    }
 </style>

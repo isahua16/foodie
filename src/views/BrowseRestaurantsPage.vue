@@ -3,6 +3,7 @@
         <client-header v-if="cookie != null"></client-header>
         <restaurant-header v-else></restaurant-header>
         <h2>BROWSE RESTAURANTS</h2>
+        <restaurant-list></restaurant-list>
     </div>
 </template>
 
@@ -10,6 +11,7 @@
 import cookies from 'vue-cookies'
 import ClientHeader from '@/components/ClientHeader.vue'
 import RestaurantHeader from '@/components/RestaurantHeader.vue'
+import RestaurantList from '@/components/RestaurantList.vue'
     export default {
         data() {
             return {
@@ -21,7 +23,8 @@ import RestaurantHeader from '@/components/RestaurantHeader.vue'
         },
         components: {
             ClientHeader,
-            RestaurantHeader
+            RestaurantHeader,
+            RestaurantList
         }
     }
 </script>

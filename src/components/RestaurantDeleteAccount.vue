@@ -2,7 +2,7 @@
     <div>
         <h3>Delete Account</h3>
         <h4>{{error_message}}</h4>
-        <input type="password" ref="input_password">
+        <input placeholder="Confirm Password" type="password" ref="input_password">
         <button @click="handle_restaurant_delete">Delete Account</button>
     </div>
 </template>
