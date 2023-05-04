@@ -47,7 +47,7 @@ import cookies from 'vue-cookies'
                     }
                 ).then((res) => {
                     console.log(res);
-                    cookies.set(`restaurant_id`, JSON.stringify(res.data.restaurantId));
+                    cookies.set(`restaurant_id`, JSON.stringify(res.data.restaurant_id));
                     cookies.set(`token`, res.data.token);
                     this.$router.push(`/restaurant-profile`);
                 }).catch((err) => {
