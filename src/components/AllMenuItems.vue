@@ -1,6 +1,6 @@
 <template>
     <div>
-        <single-menu-item></single-menu-item>
+        <single-menu-item v-for="item in menu_items" :key="item[`menu_id`]" :item="item"></single-menu-item>
     </div>
 </template>
 

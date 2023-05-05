@@ -14,5 +14,8 @@ import RestaurantViewMenu from '@/components/RestaurantViewMenu.vue'
 </script>
 
 <style lang="scss" scoped>
-
+    div {
+        display: grid;
+        place-items: center;
+    }
 </style>

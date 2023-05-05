@@ -5,7 +5,7 @@
             <img :src="menu[`image_url`]">
             <h1>{{menu[`name`]}}</h1>
             <p>{{menu[`description`]}}</p>
-            <h4>{{menu[`price`]}}</h4>
+            <h3>${{menu[`price`]}}</h3>
         </section>
     </div>
 </template>
@@ -44,3 +44,16 @@ import axios from 'axios';
         },
     }
 </script>
+
+<style lang="scss" scoped>
+    section {
+        display: grid;
+        width: 80%;
+        place-items: center;
+        > img {
+            width: 200px;
+            height:200px;
+            object-fit: cover;
+        }
+    }
+</style>
