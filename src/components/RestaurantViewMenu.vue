@@ -2,6 +2,7 @@
     <div>
         <h3>{{message}}</h3>
         <section v-for="menu in menus" :key="menu[`id`]">
+            <h1>{{restaurant_name}} menu</h1>
             <img :src="menu[`image_url`]">
             <h1>{{menu[`name`]}}</h1>
             <p>{{menu[`description`]}}</p>
@@ -16,12 +17,14 @@ import axios from 'axios';
         data() {
             return {
                 restaurant_id: undefined,
+                restaurant_name: undefined,
                 menus: undefined,
                 message: undefined
             }
         },
         mounted () {
             this.restaurant_id = this.$route.params.id;
+            this.restaurant_name = this.$route.params.name;
             axios.request(
                 {
                     url: `https://foodie.bymoen.codes/api/menu`,
@@ -46,7 +49,6 @@ import axios from 'axios';
 <style lang="scss" scoped>
     section {
         display: grid;
-        width: 80%;
         place-items: center;
         > img {
             width: 200px;

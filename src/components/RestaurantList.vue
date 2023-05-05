@@ -1,6 +1,6 @@
 <template>
     <div class="restaurant_container">
-        <article  class="restaurant_card" v-for="restaurant in restaurants" :key="restaurant[`restaurant_id`]" @click="details => click_menu(restaurant[`restaurant_id`])">
+        <article class="restaurant_card" v-for="restaurant in restaurants" :key="restaurant[`restaurant_id`]" @click="details => click_menu(restaurant[`restaurant_id`], restaurant[`name`])">
             <img :src="restaurant[`profile_url`]">
             <h2>{{restaurant[`name`]}}</h2>
             <h2>{{message}}</h2>
@@ -12,9 +12,8 @@
 import axios from 'axios'
     export default {
         methods: {
-            click_menu: function(restaurant_id) {
-                this.$root.$emit(`view_menu_event`, restaurant_id);
-                this.$router.push(`/menu/${restaurant_id}`);
+            click_menu: function(restaurant_id, restaurant_name) {
+                this.$router.push(`/menu/${restaurant_id}/${restaurant_name}`);
             }
         },
         data() {

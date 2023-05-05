@@ -46,7 +46,7 @@ const routes = [
     component: RestaurantEditMenuPage
   },
   {
-    path: `/menu/:id`,
+    path: `/menu/:id/:name`,
     component: RestaurantViewMenuPage
   }
 ]

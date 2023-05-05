@@ -75,8 +75,7 @@ import cookies from 'vue-cookies'
                     ).then(() => {
                         this[data_key] = input_value;
                         this.error_message = undefined;
-                    }).catch((err) => {
-                        console.log(err);
+                    }).catch(() => {
                         this.error_message = `Updating your info failed. Try again.`
                     });
                 } else {
@@ -97,7 +96,6 @@ import cookies from 'vue-cookies'
                     }
                 }
             ).then((res) => {
-                console.log(res);
                 this.error_message = undefined;
                 this.banner_url = res.data[0].banner_url;
                 this.profile_url = res.data[0].profile_url;
@@ -107,8 +105,7 @@ import cookies from 'vue-cookies'
                 this.address = res.data[0].address;
                 this.city = res.data[0].city;
 
-            }).catch((err) => {
-                console.log(err);
+            }).catch(() => {
                 this.error_message = `An error occured. Try again.`
             });
         },
