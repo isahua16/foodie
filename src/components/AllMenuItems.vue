@@ -38,9 +38,7 @@ import SingleMenuItem from '@/components/SingleMenuItem.vue'
         this.$root.$on(`add_menu_item`, (item) => {
             this.menu_items.push(item);
         })
-
-        },
-        
+        },     
     }
 </script>
 

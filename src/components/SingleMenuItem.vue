@@ -21,7 +21,7 @@
             <input placeholder="Change Price" type="text" ref="price">
             <button :id="item[`id`]" field="price" @click="handle_edit">Save</button>
         </div>
-        <button>DELETE ITEM</button>
+        <button :id="item[`id`]" @click="delete_item">DELETE ITEM</button>
         </article>
 </template>
 
@@ -45,6 +45,28 @@ import cookies from 'vue-cookies'
             }
         },
         methods: {
+            delete_item: function(event) {
+                console.log(event);
+                let menu_id = Number(event[`target`].getAttribute(`id`));
+                axios.request(
+                    {
+                        url: `https://foodie.bymoen.codes/api/menu`,
+                        method: `DELETE`,
+                        headers: {
+                            'x-api-key': `9uOwrHiuKE6VUs8CIbJo`,
+                            token: cookies.get(`token`)
+                        },
+                        data: {
+                            menu_id: menu_id
+                        }
+                    }
+                ).then((res) => {
+                    console.log(res);
+                    event[`target`][`parentElement`].remove();
+                }).catch((err) => {
+                    console.log(err);
+                });
+            },
             handle_edit: function(event) {
                 let menu_id = Number(event[`target`].getAttribute(`id`));
                 let data_key = event[`target`].getAttribute(`field`);

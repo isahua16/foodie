@@ -34,11 +34,9 @@ import axios from 'axios';
             
                 }
             ).then((res) => {
-                console.log(res);
                 this.message = undefined;
                 this.menus = res[`data`];
-            }).catch((err) => {
-                console.log(err);
+            }).catch(() => {
                 this.message = `An error occured. Try again`
             });
         },

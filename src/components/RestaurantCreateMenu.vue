@@ -43,7 +43,6 @@ import cookies from 'vue-cookies'
                         data: new_item
                     }
                 ).then((res) => {
-                    console.log(res);
                     let item_id = res[`data`][0];
                     new_item[`menu_id`] = item_id;
                     this.$root.$emit(`add_menu_item`, new_item);
@@ -52,8 +51,7 @@ import cookies from 'vue-cookies'
                     this.$refs[`image_url_input`].value = ``;
                     this.$refs[`name_input`].value = ``;
                     this.$refs[`price_input`].value = ``;
-                }).catch((err) => {
-                    console.log(err);
+                }).catch(() => {
                     this.message = `An error occured. Please try again`;
                 })
                 }
