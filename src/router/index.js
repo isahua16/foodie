@@ -9,6 +9,7 @@ import RestaurantHomePage from '@/views/RestaurantHomePage.vue'
 import RestaurantProfilePage from '@/views/RestaurantProfilePage.vue'
 import RestaurantEditMenuPage from '@/views/RestaurantEditMenuPage.vue'
 import RestaurantViewMenuPage from '@/views/RestaurantViewMenuPage.vue'
+import RestaurantOrdersPage from '@/views/RestaurantOrdersPage.vue'
 
 Vue.use(VueRouter)
 
@@ -48,6 +49,10 @@ const routes = [
   {
     path: `/menu/:id/:name`,
     component: RestaurantViewMenuPage
+  },
+  {
+    path: `/restaurant-orders`,
+    component: RestaurantOrdersPage
   }
 ]
 
