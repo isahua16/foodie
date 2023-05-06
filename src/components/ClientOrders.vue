@@ -4,8 +4,8 @@
         <p>Order: #{{ order[`order_id`]}}</p>
         <h2>{{ order[`name`] }}</h2>
         <h4>${{ order[`price`] }}</h4>
-        <h4 v-if="order[`is_confirmed`] === 1">Order Confirmed</h4>
-        <h4 v-else-if="order[`is_completed`] === 1">Order Completed</h4>
+        <h4 v-if="order[`is_confirmed`] == 1 && order[`is_complete`] == 0 ">In progess</h4>
+        <h4 v-else-if="order[`is_complete`] == 1">Order Completed</h4>
         <h4 v-else>Awaiting confirmation...</h4>
     </div>
   </div>
