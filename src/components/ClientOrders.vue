@@ -4,9 +4,9 @@
         <p>Order: #{{ order[`order_id`]}}</p>
         <h2>{{ order[`name`] }}</h2>
         <h4>${{ order[`price`] }}</h4>
-        <h4 v-if="order[`is_confirmed`] == 1 && order[`is_complete`] == 0 ">In progess</h4>
+        <h4 v-if="order[`is_confirmed`] == 1 && order[`is_complete`] == 0 ">In Progess</h4>
         <h4 v-else-if="order[`is_complete`] == 1">Order Completed</h4>
-        <h4 v-else>Awaiting confirmation...</h4>
+        <h4 v-else>Awaiting Confirmation</h4>
     </div>
   </div>
 </template>
@@ -25,18 +25,16 @@ export default {
   },
   methods: {
     get_orders: function () {
-      axios
-        .request({
-          url: `https://foodie.bymoen.codes/api/client-order`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-            token: cookies.get(`token`),
-          },
-        })
-        .then((res) => {
+      axios.request(
+          {
+            url: `https://foodie.bymoen.codes/api/client-order`,
+            headers: {
+              "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
+              token: cookies.get(`token`),
+            },
+          }).then((res) => {
           this.orders = res[`data`];
-        })
-        .catch((err) => {
+        }).catch((err) => {
           console.log(err);
         });
     },

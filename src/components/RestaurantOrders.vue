@@ -51,7 +51,9 @@ import cookies from 'vue-cookies';
                         },
                         data: patch_data
                     }
-                ).then().catch();
+                ).then(() => {
+                    this.get_orders();
+                }).catch(() => {});
             }
         },
         mounted () {
