@@ -5,12 +5,7 @@
       <img :src="item[`image_url`]" />
       <h3>{{ item[`name`] }}</h3>
       <h3>${{ item[`price`] }}</h3>
-      <button
-        :menu_id="item[`id`]"
-        @click="() => delete_item(i, item[`price`])"
-      >
-        remove
-      </button>
+      <button @click="() => delete_item(i, item[`price`])">remove</button>
     </div>
     <h2>Total: ${{ price_total }}</h2>
     <button v-if="order_items !== null" @click="submit_order">
