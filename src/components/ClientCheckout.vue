@@ -1,11 +1,16 @@
 <template>
   <div>
     <h2>{{ message }}</h2>
-    <div v-for="item in menu_items" :key="item[`id`]">
+    <div v-for="(item, i) in menu_items" :key="i">
       <img :src="item[`image_url`]" />
       <h3>{{ item[`name`] }}</h3>
       <h3>${{ item[`price`] }}</h3>
-      <button>remove</button>
+      <button
+        :menu_id="item[`id`]"
+        @click="() => delete_item(i, item[`price`])"
+      >
+        remove
+      </button>
     </div>
     <h2>Total: ${{ price_total }}</h2>
     <button v-if="order_items !== null" @click="submit_order">
@@ -19,6 +24,19 @@ import cookies from "vue-cookies";
 import axios from "axios";
 export default {
   methods: {
+    delete_item: function (i, price) {
+      this.menu_items.splice(i, 1);
+      this.price_total -= price;
+      this.order_items.menu_items.splice(i, 1);
+      cookies.set(`order`, this.order_items);
+
+      if (this.menu_items.length < 1) {
+        this.order_items = null;
+        this.message = `Your order is empty`;
+        cookies.remove(`order`);
+        this.menu_items = [];
+      }
+    },
     submit_order: function () {
       axios
         .request({
@@ -81,12 +99,13 @@ export default {
               if (all_items[y].id === Number(this.order_items.menu_items[i])) {
                 this.menu_items.push(all_items[y]);
                 this.price_total =
-                  this.price_total + Number(this.menu_items[y][`price`]);
+                  this.price_total + Number(all_items[y][`price`]);
               }
             }
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
           this.message = `Your order is empty`;
         });
     }
