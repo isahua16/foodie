@@ -4,24 +4,24 @@
         <div>
             <h2>{{name}}</h2>
             <input placeholder="Change Name" type="text" ref="name">
-            <button :id="item[`id`]" field="name" @click="handle_edit">Save</button>
+            <button :item_id="item[`id`]" field="name" @click="handle_edit">Save</button>
         </div>
         <div>
             <img :src="image_url">
             <input placeholder="Change Image" type="text" ref="image_url">
-            <button :id="item[`id`]" field="image_url" @click="handle_edit">Save</button>
+            <button :item_id="item[`id`]" field="image_url" @click="handle_edit">Save</button>
         </div>
         <div>
             <p>{{description}}</p>
             <input placeholder="Change Description" type="text" ref="description">
-            <button :id="item[`id`]" field="description" @click="handle_edit">Save</button>
+            <button :item_id="item[`id`]" field="description" @click="handle_edit">Save</button>
         </div>
         <div>
             <h3>${{price}}</h3>
             <input placeholder="Change Price" type="text" ref="price">
-            <button :id="item[`id`]" field="price" @click="handle_edit">Save</button>
+            <button :item_id="item[`id`]" field="price" @click="handle_edit">Save</button>
         </div>
-        <button :id="item[`id`]" @click="delete_item">DELETE ITEM</button>
+        <button :item_id="item[`id`]" @click="delete_item">DELETE ITEM</button>
         </article>
 </template>
 
@@ -47,7 +47,7 @@ import cookies from 'vue-cookies'
         methods: {
             delete_item: function(event) {
                 console.log(event);
-                let menu_id = Number(event[`target`].getAttribute(`id`));
+                let menu_id = Number(event[`target`].getAttribute(`item_id`));
                 axios.request(
                     {
                         url: `https://foodie.bymoen.codes/api/menu`,
@@ -68,7 +68,7 @@ import cookies from 'vue-cookies'
                 });
             },
             handle_edit: function(event) {
-                let menu_id = Number(event[`target`].getAttribute(`id`));
+                let menu_id = Number(event[`target`].getAttribute(`item_id`));
                 let data_key = event[`target`].getAttribute(`field`);
                 let input_value = this.$refs[data_key].value;
 

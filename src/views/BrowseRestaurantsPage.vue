@@ -1,6 +1,6 @@
 <template>
     <div>
-        <client-header v-if="cookie != null"></client-header>
+        <client-header v-if="cookie !== null"></client-header>
         <restaurant-header v-else></restaurant-header>
         <h2>BROWSE RESTAURANTS</h2>
         <restaurant-list></restaurant-list>
