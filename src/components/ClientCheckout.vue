@@ -8,7 +8,9 @@
       <button>remove</button>
     </div>
     <h2>Total: ${{ price_total }}</h2>
-    <button v-if="order_items !== null">Confirm Order</button>
+    <button v-if="order_items !== null" @click="submit_order">
+      Confirm Order
+    </button>
   </div>
 </template>
 
@@ -16,6 +18,35 @@
 import cookies from "vue-cookies";
 import axios from "axios";
 export default {
+  methods: {
+    submit_order: function () {
+      axios
+        .request({
+          url: `https://foodie.bymoen.codes/api/client-order`,
+          method: `POST`,
+          headers: {
+            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
+            token: cookies.get(`token`),
+          },
+          data: {
+            menu_items: this.order_items.menu_items,
+            restaurant_id: this.order_items[`restaurant_id`],
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.message = `Thanks for you order!`;
+          cookies.remove(`order`);
+          this.menu_items = [];
+          this.order_items = undefined;
+          this.price_total = 0;
+        })
+        .catch((err) => {
+          console.log(err);
+          this.message = `An error occured. Try again.`;
+        });
+    },
+  },
   data() {
     return {
       order_items: undefined,
