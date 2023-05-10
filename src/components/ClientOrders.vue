@@ -2,11 +2,11 @@
   <div class="order_container">
     <h3>{{ message }}</h3>
     <div class="single_order" v-for="(order, i) in orders" :key="i">
-      <p>Order: #{{ order[i][`order_id`] }}</p>
-      <h4 v-if="order[i][`is_confirmed`] == 1 && order[i][`is_complete`] == 0">
+      <p>Order: #{{ order[0][`order_id`] }}</p>
+      <h4 v-if="order[0][`is_confirmed`] == 1 && order[0][`is_complete`] == 0">
         In Progess
       </h4>
-      <h4 v-else-if="order[i][`is_complete`] == 1">Order Completed</h4>
+      <h4 v-else-if="order[0][`is_complete`] == 1">Order Completed</h4>
       <h4 v-else>Awaiting Confirmation</h4>
       <div v-for="(item, i) in order" :key="i">
         <h2>{{ item[`name`] }}</h2>
