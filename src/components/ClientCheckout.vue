@@ -7,7 +7,10 @@
       <h3>${{ item[`price`] }}</h3>
       <button @click="() => delete_item(i, item[`price`])">remove</button>
     </div>
+
+    <order-price></order-price>
     <h2>Total: ${{ price_total }}</h2>
+
     <button v-if="order_items !== null" @click="submit_order">
       Confirm Order
     </button>
@@ -17,14 +20,55 @@
 <script>
 import cookies from "vue-cookies";
 import axios from "axios";
+import OrderPrice from "@/components/OrderPrice.vue";
 export default {
+  components: {
+    OrderPrice,
+  },
   methods: {
+    get_order: function () {
+      this.order_items = cookies.get(`order`);
+      if (
+        this.order_items === null ||
+        this.order_items[`menu_items`].length < 1
+      ) {
+        this.order_items = null;
+        this.message = `Your order is empty`;
+      } else {
+        axios
+          .request({
+            url: `https://foodie.bymoen.codes/api/menu`,
+            headers: {
+              "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
+            },
+            params: {
+              restaurant_id: this.order_items[`restaurant_id`],
+            },
+          })
+          .then((res) => {
+            let all_items = res[`data`];
+            for (let i = 0; i < this.order_items.menu_items.length; i++) {
+              for (let y = 0; y < all_items.length; y++) {
+                if (
+                  all_items[y].id === Number(this.order_items.menu_items[i])
+                ) {
+                  this.menu_items.push(all_items[y]);
+                  this.price_total =
+                    this.price_total + Number(all_items[y][`price`]);
+                }
+              }
+            }
+          })
+          .catch(() => {
+            this.message = `Your order is empty`;
+          });
+      }
+    },
     delete_item: function (i, price) {
       this.menu_items.splice(i, 1);
       this.price_total -= price;
       this.order_items.menu_items.splice(i, 1);
       cookies.set(`order`, this.order_items);
-
       if (this.menu_items.length < 1) {
         this.order_items = null;
         this.message = `Your order is empty`;
@@ -67,41 +111,7 @@ export default {
     };
   },
   mounted() {
-    this.order_items = cookies.get(`order`);
-    if (
-      this.order_items === null ||
-      this.order_items[`menu_items`].length < 1
-    ) {
-      this.order_items = null;
-      this.message = `Your order is empty`;
-    } else {
-      axios
-        .request({
-          url: `https://foodie.bymoen.codes/api/menu`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-          },
-          params: {
-            restaurant_id: this.order_items[`restaurant_id`],
-          },
-        })
-        .then((res) => {
-          let all_items = res[`data`];
-          for (let i = 0; i < this.order_items.menu_items.length; i++) {
-            for (let y = 0; y < all_items.length; y++) {
-              if (all_items[y].id === Number(this.order_items.menu_items[i])) {
-                this.menu_items.push(all_items[y]);
-                this.price_total =
-                  this.price_total + Number(all_items[y][`price`]);
-              }
-            }
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          this.message = `Your order is empty`;
-        });
-    }
+    this.get_order();
   },
 };
 </script>

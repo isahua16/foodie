@@ -7,9 +7,20 @@
 </template>
 
 <script>
+import cookies from "vue-cookies";
 import ClientHeader from "@/components/ClientHeader.vue";
 import ClientOrders from "@/components/ClientOrders.vue";
 export default {
+  mounted() {
+    this.is_logged_out();
+  },
+  methods: {
+    is_logged_out: function () {
+      if (cookies.get(`token`) === null) {
+        this.$router.push(`/`);
+      }
+    },
+  },
   components: {
     ClientHeader,
     ClientOrders,

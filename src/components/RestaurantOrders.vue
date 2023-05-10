@@ -80,14 +80,11 @@ div {
     display: grid; 
     place-items: center;
 }
-
 .order_container {
     margin: 12px 0;
     row-gap: 12px;
 }
-
 .single_order {
     border: 1px solid black;
 }
-
 </style>

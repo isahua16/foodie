@@ -12,13 +12,21 @@ import RestaurantViewMenu from '@/components/RestaurantViewMenu.vue'
 import ClientHeader from '@/components/ClientHeader.vue'
 import RestaurantHeader from '@/components/RestaurantHeader.vue'
     export default {
-                data() {
+        methods: {
+                is_logged_out: function () {
+                    if(cookies.get(`token`) === null) {
+                    this.$router.push(`/`);
+                }
+            },
+        },
+        data() {
             return {
                 cookie: undefined
             }
         },
         mounted () {
-                this.cookie = cookies.get(`client_id`);
+            this.is_logged_out();
+            this.cookie = cookies.get(`client_id`);
         },
         components: {
             RestaurantViewMenu,
