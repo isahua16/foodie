@@ -60,11 +60,10 @@ import cookies from 'vue-cookies'
                             menu_id: menu_id
                         }
                     }
-                ).then((res) => {
-                    console.log(res);
+                ).then(() => {
                     event[`target`][`parentElement`].remove();
-                }).catch((err) => {
-                    console.log(err);
+                }).catch(() => {
+                    this.message = "An error occured, try again.";
                 });
             },
             handle_edit: function(event) {

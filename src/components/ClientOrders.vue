@@ -1,5 +1,6 @@
 <template>
   <div class="order_container">
+    <h3>{{message}}</h3>
     <div class="single_order" v-for="(order, i) in orders" :key="i">
         <p>Order: #{{ order[`order_id`]}}</p>
         <h2>{{ order[`name`] }}</h2>
@@ -18,6 +19,7 @@ export default {
   data() {
     return {
       orders: undefined,
+      message: undefined,
     };
   },
   mounted() {
@@ -34,8 +36,13 @@ export default {
             },
           }).then((res) => {
           this.orders = res[`data`];
-        }).catch((err) => {
-          console.log(err);
+          if(this.orders === undefined || this.orders.length < 1) {
+            this.message = `Orders list is empty`
+          } else {
+            this.message = undefined;
+          }
+        }).catch(() => {
+          this.message = `An error has occured, try again`;
         });
     },
   },

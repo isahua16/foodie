@@ -1,5 +1,6 @@
 <template>
     <div class="order_container">
+        <h3>{{message}}</h3>
         <div class="single_order" v-for="(order, i) in orders" :key="i">
             <p>Order: #{{order[`order_id`]}}</p>
             <h2>{{order[`name`]}}</h2>
@@ -17,7 +18,8 @@ import cookies from 'vue-cookies';
     export default {
         data() {
             return {
-                orders: undefined
+                orders: undefined,
+                message : undefined
             }
         },
         methods: {
@@ -32,8 +34,13 @@ import cookies from 'vue-cookies';
                     }
                 ).then((res) => {
                     this.orders = res[`data`];
-                }).catch((err) => {
-                    console.log(err);
+                    if(this.orders === undefined || this.orders.length < 1) {
+                        this.message = `Orders list is empty`
+                    } else {
+                        this.message = undefined;
+                    }
+                }).catch(() => {
+                    this.message = `An error occured. Please try again`;
                 });
             },
             patch_order: function(button_type, order_id) {
@@ -53,7 +60,9 @@ import cookies from 'vue-cookies';
                     }
                 ).then(() => {
                     this.get_orders();
-                }).catch(() => {});
+                }).catch(() => {
+                    this.message = `An error occured. Please try again.`;
+                });
             }
         },
         mounted () {
