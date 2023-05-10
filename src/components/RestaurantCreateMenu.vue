@@ -41,13 +41,8 @@ import cookies from 'vue-cookies'
                         },
                         data: new_item
                     }
-                ).then((res) => {
-                    let item_id = res[`data`][0];
-                    new_item[`menu_id`] = item_id;
-
+                ).then(() => {
                     this.$root.$emit(`new_menu_item`);
-
-                    this.message = `Item successfully added`;
                     this.$refs[`description_input`].value = ``;
                     this.$refs[`image_url_input`].value = ``;
                     this.$refs[`name_input`].value = ``;

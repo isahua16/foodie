@@ -46,16 +46,14 @@ export default {
             restaurant_id: this.order_items[`restaurant_id`],
           },
         })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           this.message = `Thanks for you order!`;
           cookies.remove(`order`);
           this.menu_items = [];
           this.order_items = undefined;
           this.price_total = 0;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           this.message = `An error occured. Try again.`;
         });
     },

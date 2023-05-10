@@ -4,18 +4,21 @@
         <div class="single_order" v-for="(order, i) in orders" :key="i">
             <p>Order: #{{order[`order_id`]}}</p>
             <h2>{{order[`name`]}}</h2>
-            <button v-if="order[`is_confirmed`] === 0" @click="() => patch_order(`is_confirmed`, order[`order_id`])">Confirm Order</button>
-            <button v-else-if="order[`is_complete`] === 0" @click="() => patch_order(`is_complete`, order[`order_id`])">Complete Order</button>
+            <restaurant-handle-order v-if="order[`is_confirmed`] === 0" :button_type="`is_confirmed`" :order_id="order[`order_id`]" :button_text="`Confirm Order`"></restaurant-handle-order>
+            <restaurant-handle-order v-else-if="order[`is_complete`] === 0" :button_type="`is_complete`" :order_id="order[`order_id`]" :button_text="`Complete Order`"></restaurant-handle-order>
             <h4 v-else>Order is completed</h4>
-        </div>
-        
+        </div>        
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import cookies from 'vue-cookies';
+import RestaurantHandleOrder from '@/components/RestaurantHandleOrder.vue';
     export default {
+        components: {
+            RestaurantHandleOrder
+        },
         data() {
             return {
                 orders: undefined,
@@ -47,7 +50,6 @@ import cookies from 'vue-cookies';
                 let patch_data = {};
                 patch_data[button_type] = `true`;
                 patch_data[`order_id`] = order_id;
-
                 axios.request(
                     {
                         url:`https://foodie.bymoen.codes/api/restaurant-order`,
@@ -67,6 +69,7 @@ import cookies from 'vue-cookies';
         },
         mounted () {
             this.get_orders();
+            this.$root.$on(`order_status_changed`, this.get_orders);
         },
         
     }
