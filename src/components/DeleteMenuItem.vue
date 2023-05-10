@@ -18,7 +18,8 @@ import cookies from 'vue-cookies';
             item_id: Number
         },
         methods: {
-            delete_item: function(event) {
+            delete_item: function() {
+                this.message = undefined;
                 axios.request(
                     {
                         url: `https://foodie.bymoen.codes/api/menu`,
@@ -32,7 +33,7 @@ import cookies from 'vue-cookies';
                         }
                     }
                 ).then(() => {
-                    event[`target`][`parentElement`].remove();
+                    this.$root.$emit(`delete_menu_item`);
                 }).catch(() => {
                     this.message = "An error occured, try again.";
                 });

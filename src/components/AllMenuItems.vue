@@ -39,6 +39,7 @@ import SingleMenuItem from '@/components/SingleMenuItem.vue'
         mounted () {
             this.get_all_items();
             this.$root.$on(`new_menu_item`, this.get_all_items);
+            this.$root.$on(`delete_menu_item`, this.get_all_items);
         },     
     }
 </script>
