@@ -31,7 +31,6 @@ import cookies from 'vue-cookies'
                             name: this.$refs[`name_input`].value,
                             price: this.$refs[`price_input`].value
                     };
-
                     axios.request(
                     {
                         url: `https://foodie.bymoen.codes/api/menu`,
@@ -45,7 +44,9 @@ import cookies from 'vue-cookies'
                 ).then((res) => {
                     let item_id = res[`data`][0];
                     new_item[`menu_id`] = item_id;
-                    this.$root.$emit(`add_menu_item`, new_item);
+
+                    this.$root.$emit(`new_menu_item`);
+
                     this.message = `Item successfully added`;
                     this.$refs[`description_input`].value = ``;
                     this.$refs[`image_url_input`].value = ``;
@@ -54,8 +55,7 @@ import cookies from 'vue-cookies'
                 }).catch(() => {
                     this.message = `An error occured. Please try again`;
                 })
-                }
-                
+                }                
             }
         }
         

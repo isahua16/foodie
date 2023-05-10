@@ -21,19 +21,20 @@
             <input placeholder="Change Price" type="text" ref="price">
             <button :item_id="item[`id`]" field="price" @click="handle_edit">Save</button>
         </div>
-        <button :item_id="item[`id`]" @click="delete_item">DELETE ITEM</button>
+        <delete-menu-item :item_id="item[`id`]"></delete-menu-item>
         </article>
 </template>
 
 <script>
 import axios from 'axios'
 import cookies from 'vue-cookies'
+import DeleteMenuItem from '@/components/DeleteMenuItem.vue'
     export default {
+        components: {
+            DeleteMenuItem
+        },
         mounted () {
-            this.name = this.item.name;
-            this.image_url = this.item.image_url;
-            this.description = this.item.description;
-            this.price = this.item.price;
+            this.assign_props();
         },
         data() {
             return {
@@ -45,41 +46,23 @@ import cookies from 'vue-cookies'
             }
         },
         methods: {
-            delete_item: function(event) {
-                console.log(event);
-                let menu_id = Number(event[`target`].getAttribute(`item_id`));
-                axios.request(
-                    {
-                        url: `https://foodie.bymoen.codes/api/menu`,
-                        method: `DELETE`,
-                        headers: {
-                            'x-api-key': `9uOwrHiuKE6VUs8CIbJo`,
-                            token: cookies.get(`token`)
-                        },
-                        data: {
-                            menu_id: menu_id
-                        }
-                    }
-                ).then(() => {
-                    event[`target`][`parentElement`].remove();
-                }).catch(() => {
-                    this.message = "An error occured, try again.";
-                });
+            assign_props: function () {
+                this.name = this.item.name;
+                this.image_url = this.item.image_url;
+                this.description = this.item.description;
+                this.price = this.item.price;
             },
             handle_edit: function(event) {
                 let menu_id = Number(event[`target`].getAttribute(`item_id`));
                 let data_key = event[`target`].getAttribute(`field`);
                 let input_value = this.$refs[data_key].value;
-
                 if(input_value === ``) {
                     this.message = `The field cannot be empty`;
                 } else {
                     this.message = undefined;
-
                     let data_object = {};
                     data_object[`menu_id`] = menu_id;
                     data_object[data_key] = input_value;
-
                     axios.request(
                         {
                             url: `https://foodie.bymoen.codes/api/menu`,
@@ -106,7 +89,6 @@ import cookies from 'vue-cookies'
 </script>
 
 <style lang="scss" scoped>
-
 article {
     margin: 10px 0;   
     display:grid;
