@@ -7,10 +7,7 @@
       <h3>${{ item[`price`] }}</h3>
       <button @click="() => delete_item(i, item[`price`])">remove</button>
     </div>
-
-    <order-price></order-price>
     <h2>Total: ${{ price_total }}</h2>
-
     <button v-if="order_items !== null" @click="submit_order">
       Confirm Order
     </button>
@@ -20,11 +17,8 @@
 <script>
 import cookies from "vue-cookies";
 import axios from "axios";
-import OrderPrice from "@/components/OrderPrice.vue";
+
 export default {
-  components: {
-    OrderPrice,
-  },
   methods: {
     get_order: function () {
       this.order_items = cookies.get(`order`);
