@@ -15,6 +15,7 @@ export default {
     this.is_logged_out();
   },
   methods: {
+    //Send user back to home page if logged out
     is_logged_out: function () {
       if (cookies.get(`token`) === null) {
         this.$router.push(`/`);

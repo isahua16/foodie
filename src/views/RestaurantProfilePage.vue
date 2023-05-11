@@ -13,6 +13,7 @@ import RestaurantEditProfile from "@/components/RestaurantEditProfile.vue";
 import RestaurantDeleteAccount from "@/components/RestaurantDeleteAccount.vue";
 export default {
   methods: {
+    //Check to see if user is logged in
     is_logged_out: function () {
       if (cookies.get(`token`) === null) {
         this.$router.push(`/`);

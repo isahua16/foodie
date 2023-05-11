@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     sort_orders: function (unsorted_orders) {
+      //Sort orders according to matching order_ids to display on the page
       let sorted_orders = [];
       let order_ids = [];
       for (let i = 0; i < unsorted_orders.length; i++) {
@@ -45,6 +46,7 @@ export default {
         }
       }
       this.orders = sorted_orders;
+      //Give the user a message if there are no orders
       if (this.orders === undefined || this.orders.length < 1) {
         this.message = `Orders list is empty`;
       } else {
@@ -52,6 +54,7 @@ export default {
       }
     },
     get_orders: function () {
+      //get the orders from the api
       axios
         .request({
           url: `https://foodie.bymoen.codes/api/client-order`,

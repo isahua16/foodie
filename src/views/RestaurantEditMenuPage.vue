@@ -17,16 +17,17 @@ export default {
     this.is_logged_out();
   },
   methods: {
+    //Send user back to home page if not logged in
     is_logged_out: function () {
       if (cookies.get(`token`) === null) {
         this.$router.push(`/`);
       }
     },
-    components: {
-      RestaurantHeader,
-      AllMenuItems,
-      RestaurantCreateMenu,
-    },
+  },
+  components: {
+    RestaurantHeader,
+    AllMenuItems,
+    RestaurantCreateMenu,
   },
 };
 </script>

@@ -2,7 +2,9 @@
   <div class="order_container">
     <h3>{{ message }}</h3>
     <div class="single_order" v-for="(order, i) in orders" :key="i">
+      <!-- Loop over the orders and display the first element's order_id. They should all share the same order_id since they were sorted accordingly -->
       <p>Order: #{{ order[0][`order_id`] }}</p>
+      <!-- Provide buttons to confirm or complete orders depending on the current element's confirmed and complete status from the API. Again, all items within that order share the same confirmed and complete status. We are also sending props that are different depending on which button is displayed on the page -->
       <restaurant-handle-order
         v-if="order[0][`is_confirmed`] === 0"
         :button_type="`is_confirmed`"
@@ -17,6 +19,7 @@
       ></restaurant-handle-order>
       <h4 v-else>Order is completed</h4>
       <div v-for="(item, i) in order" :key="i">
+        <!-- Loop over each order's items to display their name. -->
         <h2>{{ item[`name`] }}</h2>
       </div>
     </div>
@@ -39,6 +42,7 @@ export default {
   },
   methods: {
     sort_orders: function (unsorted_orders) {
+      //Sort orders according to order id to display on page
       let sorted_orders = [];
       let order_ids = [];
       for (let i = 0; i < unsorted_orders.length; i++) {
@@ -53,6 +57,7 @@ export default {
         }
       }
       this.orders = sorted_orders;
+      //Give the user a message if there are no orders
       if (this.orders === undefined || this.orders.length < 1) {
         this.message = `Orders list is empty`;
       } else {
@@ -60,6 +65,7 @@ export default {
       }
     },
     get_orders: function () {
+      //Get orders from the API
       axios
         .request({
           url: `https://foodie.bymoen.codes/api/restaurant-order`,
@@ -78,6 +84,7 @@ export default {
   },
   mounted() {
     this.get_orders();
+    //Listen to an event, and reload the orders when triggered
     this.$root.$on(`order_status_changed`, this.get_orders);
   },
 };

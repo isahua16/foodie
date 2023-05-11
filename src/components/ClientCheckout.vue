@@ -22,13 +22,16 @@ export default {
   methods: {
     get_order: function () {
       this.order_items = cookies.get(`order`);
+      //Display a message if order is empty. We check if the order_items is null first, and then check its length to avoid checking the length on undefined
       if (
         this.order_items === null ||
         this.order_items[`menu_items`].length < 1
       ) {
+        //Set the order_items to null in the case where order_items array is empty
         this.order_items = null;
         this.message = `Your order is empty`;
       } else {
+        //Get all current order's restaurant menu items from the API in order to display the current orders total price
         axios
           .request({
             url: `https://foodie.bymoen.codes/api/menu`,
@@ -42,11 +45,15 @@ export default {
           .then((res) => {
             let all_items = res[`data`];
             for (let i = 0; i < this.order_items.menu_items.length; i++) {
+              //For each menu items in the order
               for (let y = 0; y < all_items.length; y++) {
+                //compare them to all the restaurant's menu items
                 if (
                   all_items[y].id === Number(this.order_items.menu_items[i])
                 ) {
+                  //if the restaurant's menu item's id matches the current menu_item's id, push that item onto an array. This array is used to display the items on the page
                   this.menu_items.push(all_items[y]);
+                  //Update the total price of the order
                   this.price_total =
                     this.price_total + Number(all_items[y][`price`]);
                 }
@@ -54,16 +61,22 @@ export default {
             }
           })
           .catch(() => {
-            this.message = `Your order is empty`;
+            this.message = `An error occured. Try again`;
           });
       }
     },
     delete_item: function (i, price) {
+      //This function receives the index and price of the menu_item from the html
       this.menu_items.splice(i, 1);
+      //Splice the menu items at the index
       this.price_total -= price;
+      //subtract the price from the total price
       this.order_items.menu_items.splice(i, 1);
+      //Splice the order's menu_items as well so they stay the same
       cookies.set(`order`, this.order_items);
+      //Reset the cookie containing the updated order
       if (this.menu_items.length < 1) {
+        //If the menu_items array that is used to display on the page is ever empty, set the order cookie to null, delete the cookie, reset the menu_items array and give the user a message
         this.order_items = null;
         this.message = `Your order is empty`;
         cookies.remove(`order`);
@@ -71,6 +84,7 @@ export default {
       }
     },
     submit_order: function () {
+      //On click, send the order's contents as data to the api
       axios
         .request({
           url: `https://foodie.bymoen.codes/api/client-order`,
@@ -85,6 +99,7 @@ export default {
           },
         })
         .then(() => {
+          //On success, give the user a message and reset the order
           this.message = `Thanks for you order!`;
           cookies.remove(`order`);
           this.menu_items = [];
