@@ -8,9 +8,6 @@
 <script>
 import cookies from "vue-cookies";
 export default {
-  mounted() {
-    this.get_order();
-  },
   data() {
     return {
       order: undefined,
@@ -35,6 +32,7 @@ export default {
     },
     handle_order_click: function () {
       //When user clicks an item to add to their cart, check to see if the current restaurant's id matches the one contained in the order object. If it does, push the item's menu_id from the props onto the menu_items array and set the order as a cookie
+      this.get_order();
       this.message = undefined;
       if (this.restaurant_id == this.order[`restaurant_id`]) {
         this.order[`menu_items`].push(this.menu_id);
