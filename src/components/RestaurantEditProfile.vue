@@ -18,9 +18,9 @@
       <button field="name" @click="handle_edit">Save</button>
     </div>
     <div>
-      <p>{{ phone_number }}</p>
-      <input placeholder="Change Phone Number" type="text" ref="phone_number" />
-      <button field="phone_number" @click="handle_edit">Save</button>
+      <p>{{ phone }}</p>
+      <input placeholder="Change Phone Number" type="text" ref="phone" />
+      <button field="phone" @click="handle_edit">Save</button>
     </div>
     <div>
       <p>{{ email }}</p>
@@ -70,7 +70,7 @@ export default {
           this.banner_url = res.data[0].banner_url;
           this.profile_url = res.data[0].profile_url;
           this.name = res.data[0].name;
-          this.phone_number = res.data[0].phone_number;
+          this.phone = res.data[0].phone;
           this.email = res.data[0].email;
           this.address = res.data[0].address;
           this.city = res.data[0].city;
@@ -123,7 +123,7 @@ export default {
       banner_url: undefined,
       profile_url: undefined,
       name: undefined,
-      phone_number: undefined,
+      phone: undefined,
       email: undefined,
       address: undefined,
       city: undefined,

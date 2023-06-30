@@ -243,7 +243,7 @@ Returns information about a single restaurant, will error if the restaurant_id d
     email: (string),
     name: (string),
     address: (string),
-    phone_number: (string in the form of ###-###-####),
+    phone: (string in the form of ###-###-####),
     bio: (string),
     city: (string, one of Calgary, Vancouver or Toronto),
     profile_url: (string),
@@ -267,7 +267,7 @@ Will error if there is a duplicate email or phone number(the user already exists
     email: (string),
     name: (string),
     address: (string),
-    phone_number: (string in the form of ###-###-####),
+    phone: (string in the form of ###-###-####),
     bio: (string),
     city: (string, one of Calgary, Vancouver or Toronto)
     profile_url: (string),
@@ -307,7 +307,7 @@ Modify an existing restaurant if you have a valid token. Note that the token is 
     email: (string),
     name: (string),
     address: (string),
-    phone_number: (string in the form of ###-###-####),
+    phone: (string in the form of ###-###-####),
     bio: (string),
     city: (string, one of Calgary, Vancouver or Toronto)
     profile_url: (string),
@@ -362,7 +362,7 @@ Returns information about all restaurants.
         email: (string),
         name: (string),
         address: (string),
-        phone_number: (string in the form of ###-###-####),
+        phone: (string in the form of ###-###-####),
         bio: (string),
         city: (string, one of Calgary, Vancouver or Toronto)
         profile_url: (string),

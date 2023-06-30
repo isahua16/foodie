@@ -5,7 +5,7 @@
     <input placeholder="Email" type="text" ref="input_email" />
     <input placeholder="Name" type="text" ref="input_name" />
     <input placeholder="Address" type="text" ref="input_address" />
-    <input placeholder="Phone Number" type="text" ref="input_phone_number" />
+    <input placeholder="Phone Number" type="text" ref="input_phone" />
     <input placeholder="Bio" type="text" ref="input_bio" />
     <select name="restaurant_sign_up" ref="input_city">
       <option value="Vancouver">Vancouver</option>
@@ -39,7 +39,7 @@ export default {
             email: this.$refs[`input_email`].value,
             name: this.$refs[`input_name`].value,
             address: this.$refs[`input_address`].value,
-            phone_number: this.$refs[`input_phone_number`].value,
+            phone: this.$refs[`input_phone`].value,
             bio: this.$refs[`input_bio`].value,
             city: this.$refs[`input_city`].value,
             profile_url: this.$refs[`input_profile_url`].value,
@@ -49,8 +49,8 @@ export default {
         })
         .then((res) => {
           //Store logged in statues cookies and send to profile page
-          cookies.set(`restaurant_id`, JSON.stringify(res.data.restaurant_id));
-          cookies.set(`token`, res.data.token);
+          cookies.set(`restaurant_id`, JSON.stringify(res.data[0].id));
+          cookies.set(`token`, res.data[0].token);
           this.$router.push(`/restaurant-profile`);
         })
         .catch(() => {

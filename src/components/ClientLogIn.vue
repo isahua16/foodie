@@ -42,8 +42,8 @@ export default {
         })
         .then((res) => {
           //Set logged in status cookies and send to client profile page
-          cookies.set(`client_id`, JSON.stringify(res.data.client_id));
-          cookies.set(`token`, res.data.token);
+          cookies.set(`client_id`, JSON.stringify(res.data[0].client_id));
+          cookies.set(`token`, res.data[0].token);
           this.$router.push(`/profile`);
         })
         .catch(() => {

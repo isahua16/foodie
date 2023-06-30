@@ -3,10 +3,8 @@
     <article
       class="restaurant_card"
       v-for="restaurant in restaurants"
-      :key="restaurant[`restaurant_id`]"
-      @click="
-        (details) => click_menu(restaurant[`restaurant_id`], restaurant[`name`])
-      "
+      :key="restaurant[`id`]"
+      @click="() => click_menu(restaurant[`id`], restaurant[`name`])"
     >
       <img :src="restaurant[`profile_url`]" />
       <h2>{{ restaurant[`name`] }}</h2>

@@ -32,8 +32,11 @@ export default {
         })
         .then((res) => {
           //Store logged in status cookies
-          cookies.set(`restaurant_id`, JSON.stringify(res.data.restaurant_id));
-          cookies.set(`token`, res.data.token);
+          cookies.set(
+            `restaurant_id`,
+            JSON.stringify(res.data[0].restaurant_id)
+          );
+          cookies.set(`token`, res.data[0].token);
           this.$router.push(`/restaurant-profile`);
         })
         .catch(() => {

@@ -17,7 +17,7 @@ export default {
       this.message = undefined;
       //Create a new data object to be sent in the patch API call
       let patch_data = {};
-      patch_data[button_type] = `true`;
+      patch_data[button_type] = 1;
       patch_data[`order_id`] = order_id;
       axios
         .request({
