@@ -33,10 +33,7 @@ export default {
       this.restaurant_name = this.$route.params.name;
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/menu`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-          },
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/menu`,
           params: {
             restaurant_id: this.restaurant_id,
           },

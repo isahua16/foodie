@@ -40,10 +40,9 @@ export default {
         };
         axios
           .request({
-            url: `https://foodie.bymoen.codes/api/menu`,
+            url: `${process.env.VUE_APP_BASE_DOMAIN}/api/menu`,
             method: `POST`,
             headers: {
-              "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
               token: cookies.get(`token`),
             },
             data: new_item,

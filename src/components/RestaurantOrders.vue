@@ -68,9 +68,8 @@ export default {
       //Get orders from the API
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/restaurant-order`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/restaurant-order`,
           headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
             token: cookies.get(`token`),
           },
         })

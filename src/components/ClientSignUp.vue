@@ -57,11 +57,8 @@ export default {
       this.error_message = undefined;
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/client`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client`,
           method: `POST`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-          },
           data: {
             email: this.$refs[`input_email`].value,
             first_name: this.$refs[`input_first_name`].value,

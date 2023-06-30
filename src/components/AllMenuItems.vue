@@ -19,10 +19,7 @@ export default {
       //On mounted, get all the restaurant's menu items, store them in a variable and display them on the page
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/menu`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-          },
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/menu`,
           params: {
             restaurant_id: cookies.get(`restaurant_id`),
           },

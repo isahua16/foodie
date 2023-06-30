@@ -20,10 +20,9 @@ export default {
       this.message = undefined;
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/client-login`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client-login`,
           method: `DELETE`,
           headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
             token: cookies.get(`token`),
           },
         })

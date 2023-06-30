@@ -21,10 +21,9 @@ export default {
       patch_data[`order_id`] = order_id;
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/restaurant-order`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/restaurant-order`,
           method: `PATCH`,
           headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
             token: cookies.get(`token`),
           },
           data: patch_data,

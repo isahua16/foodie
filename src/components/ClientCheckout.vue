@@ -34,10 +34,7 @@ export default {
         //Get all current order's restaurant menu items from the API in order to display the current orders total price
         axios
           .request({
-            url: `https://foodie.bymoen.codes/api/menu`,
-            headers: {
-              "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-            },
+            url: `${process.env.VUE_APP_BASE_DOMAIN}/api/menu`,
             params: {
               restaurant_id: this.order_items[`restaurant_id`],
             },
@@ -87,10 +84,9 @@ export default {
       //On click, send the order's contents as data to the api
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/client-order`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client-order`,
           method: `POST`,
           headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
             token: cookies.get(`token`),
           },
           data: {

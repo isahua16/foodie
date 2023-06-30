@@ -23,11 +23,8 @@ export default {
       this.error_message = undefined;
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/restaurant-login`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/restaurant-login`,
           method: `POST`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-          },
           data: {
             email: this.$refs[`input_email`].value,
             password: this.$refs[`input_password`].value,

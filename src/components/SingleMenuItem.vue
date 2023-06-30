@@ -76,10 +76,9 @@ export default {
         data_object[data_key] = input_value;
         axios
           .request({
-            url: `https://foodie.bymoen.codes/api/menu`,
+            url: `${process.env.VUE_APP_BASE_DOMAIN}/api/menu`,
             method: `PATCH`,
             headers: {
-              "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
               token: cookies.get(`token`),
             },
             data: data_object,

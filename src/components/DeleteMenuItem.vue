@@ -23,10 +23,9 @@ export default {
       //Get the item's id from the props, and send it in the API call
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/menu`,
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/menu`,
           method: `DELETE`,
           headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
             token: cookies.get(`token`),
           },
           data: {

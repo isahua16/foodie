@@ -40,10 +40,7 @@ export default {
       //Called on mounted, get the user's profile information and add it to the page
       axios
         .request({
-          url: `https://foodie.bymoen.codes/api/client`,
-          headers: {
-            "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
-          },
+          url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client`,
           params: {
             client_id: JSON.parse(cookies.get(`client_id`)),
           },
@@ -71,10 +68,9 @@ export default {
         //Make the patch API call with the above object as the data
         axios
           .request({
-            url: `https://foodie.bymoen.codes/api/client`,
+            url: `${process.env.VUE_APP_BASE_DOMAIN}/api/client`,
             method: `PATCH`,
             headers: {
-              "x-api-key": `9uOwrHiuKE6VUs8CIbJo`,
               token: cookies.get(`token`),
             },
             data: data,
